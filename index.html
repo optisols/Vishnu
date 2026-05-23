@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Soul Vishnu — Works &amp; Hobbies</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.04);
+        }
+        .liquid-bg {
+            background: radial-gradient(circle at 20% 30%, rgba(122, 156, 198, 0.12) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(61, 79, 102, 0.18) 0%, transparent 50%),
+                        #08090c;
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 20px rgba(122, 156, 198, 0.35);
+        }
+        .bento-border {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background-clip: padding-box;
+        }
+        #hero-image,
+        .thumb-img {
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+        .gallery-swapping #hero-image,
+        .gallery-swapping .thumb-img {
+            opacity: 0.85;
+        }
+        .prompt-panel {
+            transform: none !important;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+        }
+        .prompt-panel:hover {
+            border-color: rgba(122, 156, 198, 0.35);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 24px rgba(122, 156, 198, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.06);
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-surface": "#e4e7ec",
+                        "outline": "#5a6478",
+                        "on-primary-fixed-variant": "#2a3544",
+                        "surface-container-highest": "#1e2430",
+                        "tertiary-fixed": "#c5cdd8",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed-dim": "#7a9cc6",
+                        "on-surface-variant": "#8b95a8",
+                        "secondary": "#a8b0be",
+                        "secondary-fixed-dim": "#8b95a8",
+                        "surface-dim": "#08090c",
+                        "on-secondary-fixed": "#0f1116",
+                        "background": "#08090c",
+                        "tertiary-container": "#252830",
+                        "on-secondary-fixed-variant": "#3d4f66",
+                        "error": "#ffb4ab",
+                        "surface-variant": "#161a22",
+                        "surface-container-lowest": "#08090c",
+                        "on-primary-container": "#c5d4e8",
+                        "on-tertiary-container": "#8b95a8",
+                        "secondary-container": "#252830",
+                        "on-secondary-container": "#a8b0be",
+                        "on-tertiary-fixed-variant": "#3d4f66",
+                        "surface-tint": "#7a9cc6",
+                        "primary-fixed": "#9eb8d9",
+                        "inverse-on-surface": "#1a1d24",
+                        "on-primary-fixed": "#0a0d12",
+                        "on-tertiary": "#8b95a8",
+                        "secondary-fixed": "#e4e7ec",
+                        "surface-bright": "#2a3040",
+                        "on-primary": "#0f1116",
+                        "primary": "#e4e7ec",
+                        "surface": "#0f1116",
+                        "inverse-primary": "#5a7a9e",
+                        "surface-container-high": "#1a1d24",
+                        "tertiary-fixed-dim": "#6b7588",
+                        "surface-container": "#161a22",
+                        "primary-container": "#3d4f66",
+                        "on-error": "#690005",
+                        "tertiary": "#c5cdd8",
+                        "surface-container-low": "#12151c",
+                        "error-container": "#93000a",
+                        "on-background": "#e4e7ec",
+                        "on-tertiary-fixed": "#0f1116",
+                        "on-secondary": "#1a1d24",
+                        "outline-variant": "#2a3040",
+                        "inverse-surface": "#e4e7ec",
+                        "steel": "#7a9cc6",
+                        "steel-dim": "#5a7a9e"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        "card-gap": "32px",
+                        "section-margin": "80px",
+                        unit: "8px",
+                        gutter: "24px",
+                        "container-padding": "40px"
+                    },
+                    fontFamily: {
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "label-caps": ["JetBrains Mono"],
+                        "headline-md": ["Hanken Grotesk"]
+                    },
+                    fontSize: {
+                        "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+                        "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+                        "display-lg": ["48px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "label-caps": ["12px", { lineHeight: "1.0", letterSpacing: "0.1em", fontWeight: "500" }],
+                        "headline-md": ["24px", { lineHeight: "1.3", fontWeight: "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden selection:bg-primary-fixed selection:text-on-primary-fixed">
+<div class="liquid-bg"></div>
+
+<nav class="fixed top-0 w-full z-50 bg-surface/30 backdrop-blur-xl border-b border-white/10 shadow-[0_0_20px_rgba(122,156,198,0.08)] duration-300 ease-in-out flex justify-between items-center px-4 md:px-container-padding h-16 md:h-20 max-w-full">
+<a href="index.html" class="font-display-lg text-xl md:text-2xl text-primary-fixed-dim tracking-tighter">Soul.Vishnu_</a>
+<div class="hidden md:flex items-center gap-gutter">
+<a class="text-primary-fixed font-bold border-b-2 border-primary-fixed pb-1 font-body-md text-body-md" href="index.html">Prompt</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-body-md text-body-md" href="about.html">About</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-body-md text-body-md" href="#socials">Socials</a>
+</div>
+</nav>
+
+<aside class="sidebar-nav hidden md:flex fixed left-0 top-0 h-full w-20 hover:w-64 transition-all duration-500 ease-in-out z-40 flex-col border-r border-white/5 bg-surface-container-low/30 backdrop-blur-2xl pt-24 pb-8 px-3 hover:px-5 group overflow-hidden">
+<a href="index.html" class="hidden group-hover:block font-display-lg text-xl text-primary-fixed-dim tracking-tighter mb-8 whitespace-nowrap">Soul.Vishnu_</a>
+<div class="flex flex-col items-center gap-3 mb-10 w-full">
+<div class="w-12 h-12 group-hover:w-24 group-hover:h-24 rounded-full overflow-hidden border border-primary-fixed/30 transition-all duration-500 shrink-0">
+<img alt="Soul Vishnu portrait" class="w-full h-full object-cover object-top" src="assets/images/about-work.png"/>
+</div>
+<p class="hidden group-hover:block font-display-lg text-headline-md text-primary-fixed-dim whitespace-nowrap">Soul Vishnu</p>
+</div>
+<nav class="flex flex-col gap-1 w-full">
+<a class="flex items-center justify-center group-hover:justify-start gap-0 group-hover:gap-4 py-3 px-2 group-hover:px-4 w-full text-on-surface-variant opacity-70 hover:bg-white/10 hover:opacity-100 transition-all rounded-r-lg" href="about.html">
+<span class="material-symbols-outlined text-[22px] shrink-0">person</span>
+<span class="hidden group-hover:inline font-label-caps text-label-caps whitespace-nowrap">About Me</span>
+</a>
+<a class="flex items-center justify-center group-hover:justify-start gap-0 group-hover:gap-4 py-3 px-2 group-hover:px-4 w-full text-primary-fixed border-l-2 border-primary-fixed bg-primary-fixed/5 transition-all rounded-r-lg" href="index.html">
+<span class="material-symbols-outlined text-[22px] shrink-0">terminal</span>
+<span class="hidden group-hover:inline font-label-caps text-label-caps whitespace-nowrap">Prompt</span>
+</a>
+<a class="flex items-center justify-center group-hover:justify-start gap-0 group-hover:gap-4 py-3 px-2 group-hover:px-4 w-full text-on-surface-variant opacity-70 hover:bg-white/10 hover:opacity-100 transition-all rounded-r-lg" href="#socials">
+<span class="material-symbols-outlined text-[22px] shrink-0">alternate_email</span>
+<span class="hidden group-hover:inline font-label-caps text-label-caps whitespace-nowrap">Connect</span>
+</a>
+</nav>
+</aside>
+
+<main id="showcase" class="md:ml-20 pt-16 md:pt-20 min-h-screen px-4 md:px-container-padding flex items-center justify-center">
+<div class="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-card-gap min-h-0 lg:min-h-[700px] py-8 md:py-12">
+
+<div class="relative rounded-xl overflow-hidden group" id="rides">
+<div class="flex flex-col h-full gap-4">
+<div class="relative flex-grow min-h-[280px] md:min-h-[400px] rounded-xl overflow-hidden group border border-white/10">
+<div class="absolute inset-0 bg-gradient-to-t from-surface/80 to-transparent z-10"></div>
+<img id="hero-image" alt="Night ride AR route composite to Bengaluru" class="w-full h-full min-h-[280px] md:min-h-[400px] object-cover transition-transform duration-700 group-hover:scale-105" src="assets/images/hero-ar.png"/>
+<div class="absolute bottom-6 md:bottom-8 left-6 md:left-8 z-20 flex flex-col gap-2">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-primary-fixed animate-pulse"></div>
+<span class="font-label-caps text-label-caps text-primary-fixed">TRICHY → BENGALURU · DUKE 200</span>
+</div>
+<h2 class="font-display-lg text-3xl md:text-display-lg text-white">THE RIDE.</h2>
+<p class="font-body-md text-on-surface-variant text-sm md:text-base">310 km · 5 hr 34 min · avg 80 km/h</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 h-36 md:h-48" id="thumb-gallery">
+<button type="button" class="hero-thumb glass-panel rounded-xl overflow-hidden border border-white/10 hover:border-primary-fixed/50 transition-all cursor-pointer group text-left p-0" aria-label="Swap with route map">
+<img alt="Google Maps route Tiruchirappalli to Bengaluru" class="thumb-img w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity pointer-events-none" src="assets/images/ride-maps.png"/>
+</button>
+<button type="button" class="hero-thumb glass-panel rounded-xl overflow-hidden border border-white/10 hover:border-primary-fixed/50 transition-all cursor-pointer group text-left p-0" aria-label="Swap with POV ride photo">
+<img alt="POV on Duke 200 handlebars" class="thumb-img w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity pointer-events-none" src="assets/images/ride-pov.png"/>
+</button>
+</div>
+</div>
+</div>
+
+<div class="flex flex-col gap-gutter">
+<div id="prompt-section" class="glass-panel prompt-panel p-6 md:p-12 rounded-xl flex flex-col gap-6 relative overflow-hidden h-full max-h-[70vh] lg:max-h-none">
+<div class="absolute -top-24 -right-24 w-48 h-48 bg-primary-fixed/10 blur-[80px] rounded-full pointer-events-none"></div>
+<div class="flex items-start justify-between border-b border-white/10 pb-4 gap-4">
+<div>
+<h3 class="font-label-caps text-label-caps tracking-widest text-primary-fixed">PROMPT:</h3>
+<p class="font-body-md text-on-surface-variant text-sm mt-2">Use this prompt in Chatgpt</p>
+</div>
+<span class="material-symbols-outlined text-primary-fixed opacity-50 shrink-0">terminal</span>
+</div>
+<div class="flex-grow overflow-y-auto pr-0 md:pr-4">
+<p id="prompt-text" class="font-body-md text-on-surface-variant leading-relaxed text-justify selection:bg-primary-fixed/30 whitespace-pre-line">Use the provided biker photo as the ONLY human subject. Maintain identity, face, skin tone, hair, riding gear, helmet, gloves, boots, body proportions, and pose EXACTLY. Do NOT beautify, stylize, or alter the biker in any way. Combine the biker photo with the provided Wheelsafar ride stats screenshot into a single cinematic composition.
+
+Read all visible ride data directly from the Wheelsafar screenshot and reproduce the values EXACTLY as shown. Do not modify, reinterpret, approximate, or redesign any numbers, labels, route shapes, icons, or branding elements.
+
+The real Wheelsafar stats UI with the EXACT numbers and formatting from the screenshot must appear clearly embedded onto the 3D ground beneath the biker, naturally integrated into the asphalt perspective. The stats should feel physically painted, illuminated, or projected onto the road surface with realistic depth, reflections, texture interaction, and environmental lighting. Do NOT make the UI float in the air.
+
+Extract the Wheelsafar route map from the screenshot and project it onto the ground in realistic 3D perspective:
+Location: [TYPE START LOCATION] to [TYPE END LOCATION]
+Distance: [TYPE DISTANCE]
+Top Speed: [TYPE TOP SPEED]
+Average Speed: [TYPE AVERAGE SPEED]
+Bike Name: [TYPE BIKE NAME]
+
+The route must form the main glowing road path beneath and ahead of the biker. The same route must also extend around the biker on the ground, subtly framing the rider composition. The route must feel physically embedded into the asphalt with realistic perspective distortion, edge glow, depth, and light spill. Never make the route holographic or floating. The route glow color must match the Wheelsafar yellow theme exactly, vibrant golden yellow with cinematic contrast. Do NOT change the original background, lighting, environment, or composition from the biker photo. Only embed the Wheelsafar stats and route naturally into the scene as instructed.</p>
+</div>
+<div id="socials" class="pt-6 border-t border-white/10 flex flex-col sm:flex-row gap-gutter items-center justify-between">
+<a class="flex items-center gap-3 text-primary-fixed hover:text-white transition-colors group" href="https://www.instagram.com/soul.vishnu_" target="_blank" rel="noopener noreferrer">
+<div class="p-2 rounded-full border border-primary-fixed group-hover:bg-primary-fixed group-hover:text-on-primary-fixed transition-all">
+<span class="material-symbols-outlined text-[20px]">photo_camera</span>
+</div>
+<span class="font-label-caps text-label-caps">Follow me on Instagram</span>
+</a>
+<button type="button" id="copy-prompt-btn" class="px-3 py-1 rounded-full bg-primary-fixed/10 border border-primary-fixed/20 font-label-caps text-[10px] text-primary-fixed hover:bg-primary-fixed hover:text-on-primary-fixed transition-all cursor-pointer flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]" id="copy-prompt-icon">content_copy</span>
+<span id="copy-prompt-label">Copy Prompt</span>
+</button>
+</div>
+</div>
+
+<div class="grid grid-cols-2 gap-gutter">
+<a href="about.html" class="glass-panel p-6 rounded-xl hover:bg-white/5 transition-all cursor-pointer group block">
+<div class="flex items-center justify-between mb-4">
+<span class="material-symbols-outlined text-primary-fixed">person</span>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+</div>
+<p class="font-label-caps text-label-caps text-on-surface-variant">ABOUT</p>
+<p class="font-headline-md text-headline-md">About Me</p>
+</a>
+<a href="#rides" class="glass-panel p-6 rounded-xl hover:bg-white/5 transition-all cursor-pointer group block">
+<div class="flex items-center justify-between mb-4">
+<span class="material-symbols-outlined text-primary-fixed">two_wheeler</span>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+</div>
+<p class="font-label-caps text-label-caps text-on-surface-variant">RIDES</p>
+<p class="font-headline-md text-headline-md">Ride Log</p>
+</a>
+</div>
+</div>
+</div>
+</main>
+
+<footer class="w-full py-12 md:py-section-margin border-t border-outline-variant/20 flex justify-center items-center px-4 md:px-container-padding bg-transparent relative z-10">
+<div class="flex items-center gap-4 md:gap-gutter flex-wrap justify-center">
+<a class="text-on-surface-variant hover:text-primary-fixed transition-colors font-label-caps text-label-caps" href="https://www.instagram.com/soul.vishnu_" target="_blank" rel="noopener noreferrer">Instagram</a>
+<a class="text-on-surface-variant hover:text-primary-fixed transition-colors font-label-caps text-label-caps" href="https://www.linkedin.com/in/vishnu-shanmugamm/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+</div>
+</footer>
+
+<script>
+        document.addEventListener('mousemove', (e) => {
+            const panels = document.querySelectorAll('.glass-panel:not(.prompt-panel)');
+            panels.forEach(panel => {
+                const rect = panel.getBoundingClientRect();
+                const dx = (e.clientX - (rect.left + rect.width / 2)) / 100;
+                const dy = (e.clientY - (rect.top + rect.height / 2)) / 100;
+                panel.style.transform = `perspective(1000px) rotateX(${dy * -0.5}deg) rotateY(${dx * 0.5}deg) translateY(0)`;
+            });
+        });
+
+        const copyPromptBtn = document.getElementById('copy-prompt-btn');
+        const copyPromptLabel = document.getElementById('copy-prompt-label');
+        const copyPromptIcon = document.getElementById('copy-prompt-icon');
+        const promptText = document.getElementById('prompt-text');
+
+        copyPromptBtn?.addEventListener('click', async () => {
+            const text = promptText?.innerText?.trim();
+            if (!text) return;
+            try {
+                await navigator.clipboard.writeText(text);
+                copyPromptLabel.textContent = 'Copied!';
+                copyPromptIcon.textContent = 'check';
+                setTimeout(() => {
+                    copyPromptLabel.textContent = 'Copy Prompt';
+                    copyPromptIcon.textContent = 'content_copy';
+                }, 2000);
+            } catch {
+                copyPromptLabel.textContent = 'Copy failed';
+                setTimeout(() => {
+                    copyPromptLabel.textContent = 'Copy Prompt';
+                }, 2000);
+            }
+        });
+
+        const bg = document.querySelector('.liquid-bg');
+        let tick = 0;
+        function animate() {
+            tick += 0.005;
+            const x = Math.sin(tick) * 5;
+            const y = Math.cos(tick) * 5;
+            bg.style.backgroundPosition = `${50 + x}% ${50 + y}%`;
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        const heroImage = document.getElementById('hero-image');
+        const gallery = document.getElementById('thumb-gallery');
+
+        document.querySelectorAll('.hero-thumb').forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                const thumbImg = thumb.querySelector('.thumb-img');
+                if (!thumbImg || !heroImage) return;
+
+                gallery?.classList.add('gallery-swapping');
+
+                const heroSrc = heroImage.getAttribute('src');
+                const heroAlt = heroImage.getAttribute('alt') || '';
+                const thumbSrc = thumbImg.getAttribute('src');
+                const thumbAlt = thumbImg.getAttribute('alt') || '';
+
+                heroImage.setAttribute('src', thumbSrc);
+                heroImage.setAttribute('alt', thumbAlt);
+                thumbImg.setAttribute('src', heroSrc);
+                thumbImg.setAttribute('alt', heroAlt);
+
+                thumb.setAttribute('aria-label', `Swap with ${heroAlt}`);
+
+                requestAnimationFrame(() => {
+                    gallery?.classList.remove('gallery-swapping');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
