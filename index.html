@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Soul Vishnu — Works &amp; Hobbies</title>
+<title>Soul Vishnu — About Me</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <style>
@@ -27,27 +27,6 @@
         .glow-hover:hover {
             box-shadow: 0 0 20px rgba(122, 156, 198, 0.35);
         }
-        .bento-border {
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            background-clip: padding-box;
-        }
-        #hero-image,
-        .thumb-img {
-            transition: opacity 0.25s ease, transform 0.25s ease;
-        }
-        .gallery-swapping #hero-image,
-        .gallery-swapping .thumb-img {
-            opacity: 0.85;
-        }
-        .prompt-panel {
-            transform: none !important;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-        }
-        .prompt-panel:hover {
-            border-color: rgba(122, 156, 198, 0.35);
-            background: rgba(255, 255, 255, 0.05);
-            box-shadow: 0 0 24px rgba(122, 156, 198, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.06);
-        }
         .nav-link-active {
             color: #9eb8d9;
             background: rgba(122, 156, 198, 0.12);
@@ -59,12 +38,16 @@
             from { opacity: 0; transform: translateY(-8px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        .about-hero-bg img {
+            opacity: 0.35;
         }
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
+        .about-hero-overlay {
+            background: linear-gradient(
+                to bottom,
+                rgba(8, 9, 12, 0.55) 0%,
+                rgba(8, 9, 12, 0.72) 50%,
+                rgba(8, 9, 12, 0.85) 100%
+            );
         }
     </style>
 <script id="tailwind-config">
@@ -74,77 +57,28 @@
                 extend: {
                     colors: {
                         "on-surface": "#e4e7ec",
-                        "outline": "#5a6478",
-                        "on-primary-fixed-variant": "#2a3544",
-                        "surface-container-highest": "#1e2430",
-                        "tertiary-fixed": "#c5cdd8",
-                        "on-error-container": "#ffdad6",
                         "primary-fixed-dim": "#7a9cc6",
                         "on-surface-variant": "#8b95a8",
-                        "secondary": "#a8b0be",
-                        "secondary-fixed-dim": "#8b95a8",
-                        "surface-dim": "#08090c",
-                        "on-secondary-fixed": "#0f1116",
-                        "background": "#08090c",
-                        "tertiary-container": "#252830",
-                        "on-secondary-fixed-variant": "#3d4f66",
-                        "error": "#ffb4ab",
-                        "surface-variant": "#161a22",
-                        "surface-container-lowest": "#08090c",
                         "on-primary-container": "#c5d4e8",
-                        "on-tertiary-container": "#8b95a8",
-                        "secondary-container": "#252830",
-                        "on-secondary-container": "#a8b0be",
-                        "on-tertiary-fixed-variant": "#3d4f66",
-                        "surface-tint": "#7a9cc6",
                         "primary-fixed": "#9eb8d9",
-                        "inverse-on-surface": "#1a1d24",
                         "on-primary-fixed": "#0a0d12",
-                        "on-tertiary": "#8b95a8",
-                        "secondary-fixed": "#e4e7ec",
-                        "surface-bright": "#2a3040",
-                        "on-primary": "#0f1116",
-                        "primary": "#e4e7ec",
                         "surface": "#0f1116",
-                        "inverse-primary": "#5a7a9e",
-                        "surface-container-high": "#1a1d24",
-                        "tertiary-fixed-dim": "#6b7588",
-                        "surface-container": "#161a22",
                         "primary-container": "#3d4f66",
-                        "on-error": "#690005",
-                        "tertiary": "#c5cdd8",
                         "surface-container-low": "#12151c",
-                        "error-container": "#93000a",
-                        "on-background": "#e4e7ec",
-                        "on-tertiary-fixed": "#0f1116",
-                        "on-secondary": "#1a1d24",
-                        "outline-variant": "#2a3040",
-                        "inverse-surface": "#e4e7ec",
-                        "steel": "#7a9cc6",
-                        "steel-dim": "#5a7a9e"
-                    },
-                    borderRadius: {
-                        DEFAULT: "0.25rem",
-                        lg: "0.5rem",
-                        xl: "0.75rem",
-                        full: "9999px"
+                        "outline-variant": "#2a3040"
                     },
                     spacing: {
-                        "card-gap": "32px",
                         "section-margin": "80px",
-                        unit: "8px",
                         gutter: "24px",
                         "container-padding": "40px"
                     },
                     fontFamily: {
-                        "body-lg": ["Inter"],
                         "body-md": ["Inter"],
                         "display-lg": ["Hanken Grotesk"],
                         "label-caps": ["JetBrains Mono"],
                         "headline-md": ["Hanken Grotesk"]
                     },
                     fontSize: {
-                        "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
                         "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
                         "display-lg": ["48px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "700" }],
                         "label-caps": ["12px", { lineHeight: "1.0", letterSpacing: "0.1em", fontWeight: "500" }],
@@ -165,9 +99,11 @@
 <span class="font-display-lg text-base sm:text-lg md:text-xl text-primary-fixed-dim tracking-tighter truncate">Soul.Vishnu_</span>
 </a>
 <nav class="hidden md:flex items-center gap-1" aria-label="Main navigation">
-<a class="flex items-center gap-2 px-3 py-2 rounded-lg font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all" href="about.html">
-<span class="material-symbols-outlined text-[20px]">person</span>About Me</a>
 <a class="nav-link-active flex items-center gap-2 px-3 py-2 rounded-lg font-label-caps text-label-caps transition-all" href="index.html">
+<span class="material-symbols-outlined text-[20px]">person</span>About Me</a>
+<a class="flex items-center gap-2 px-3 py-2 rounded-lg font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all" href="travel.html">
+<span class="material-symbols-outlined text-[20px]">map</span>Travel</a>
+<a class="flex items-center gap-2 px-3 py-2 rounded-lg font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all" href="prompt.html">
 <span class="material-symbols-outlined text-[20px]">terminal</span>Prompt</a>
 <a class="flex items-center gap-2 px-3 py-2 rounded-lg font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all" href="#socials">
 <span class="material-symbols-outlined text-[20px]">alternate_email</span>Connect</a>
@@ -177,106 +113,139 @@
 </button>
 </div>
 <nav id="mobile-menu" class="hidden md:hidden border-t border-white/10 bg-surface/95 backdrop-blur-xl px-4 py-3 flex flex-col gap-1" aria-label="Mobile navigation">
-<a class="flex items-center gap-3 px-3 py-3 rounded-lg font-label-caps text-label-caps text-on-surface-variant hover:bg-white/10 transition-all" href="about.html">
-<span class="material-symbols-outlined text-[22px]">person</span>About Me</a>
 <a class="nav-link-active flex items-center gap-3 px-3 py-3 rounded-lg font-label-caps text-label-caps transition-all" href="index.html">
+<span class="material-symbols-outlined text-[22px]">person</span>About Me</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg font-label-caps text-label-caps text-on-surface-variant hover:bg-white/10 transition-all" href="travel.html">
+<span class="material-symbols-outlined text-[22px]">map</span>Travel</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg font-label-caps text-label-caps text-on-surface-variant hover:bg-white/10 transition-all" href="prompt.html">
 <span class="material-symbols-outlined text-[22px]">terminal</span>Prompt</a>
 <a class="flex items-center gap-3 px-3 py-3 rounded-lg font-label-caps text-label-caps text-on-surface-variant hover:bg-white/10 transition-all" href="#socials">
 <span class="material-symbols-outlined text-[22px]">alternate_email</span>Connect</a>
 </nav>
 </header>
 
-<main id="showcase" class="pt-[4.25rem] sm:pt-20 min-h-screen px-3 sm:px-4 md:px-container-padding flex items-center justify-center">
-<div class="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6 md:gap-card-gap min-h-0 lg:min-h-[700px] py-6 sm:py-8 md:py-12">
+<main class="pt-[4.25rem] sm:pt-20 pb-12 sm:pb-16 w-full">
+<div class="w-full flex flex-col gap-8 sm:gap-10 md:gap-12">
 
-<div class="relative rounded-xl overflow-hidden group" id="rides">
-<div class="flex flex-col h-full gap-4">
-<div class="relative flex-grow min-h-[280px] md:min-h-[400px] rounded-xl overflow-hidden group border border-white/10">
-<div class="absolute inset-0 bg-gradient-to-t from-surface/80 to-transparent z-10"></div>
-<img id="hero-image" alt="Night ride AR route composite to Bengaluru" class="w-full h-full min-h-[280px] md:min-h-[400px] object-cover transition-transform duration-700 group-hover:scale-105" src="assets/images/hero-ar.png"/>
-<div class="absolute bottom-6 md:bottom-8 left-6 md:left-8 z-20 flex flex-col gap-2">
-<div class="flex items-center gap-3">
-<div class="w-2 h-2 rounded-full bg-primary-fixed animate-pulse"></div>
-<span class="font-label-caps text-[10px] sm:text-label-caps text-primary-fixed">TRICHY → BENGALURU · DUKE 200</span>
+<div class="w-full px-3 sm:px-4 md:px-container-padding">
+<section class="about-hero relative w-full rounded-xl overflow-hidden border border-white/10 min-h-[320px] sm:min-h-[380px] md:min-h-[44vh] md:max-h-[520px] flex items-center justify-center">
+<div class="about-hero-bg absolute inset-0 grid grid-cols-1 md:grid-cols-2">
+<div class="relative min-h-[180px] md:min-h-0 h-full">
+<img alt="" class="absolute inset-0 w-full h-full object-cover object-center" src="assets/images/about-work.png" aria-hidden="true"/>
 </div>
-<h2 class="font-display-lg text-2xl sm:text-3xl md:text-display-lg text-white">THE RIDE.</h2>
-<p class="font-body-md text-on-surface-variant text-xs sm:text-sm md:text-base">310 km · 5 hr 34 min · avg 80 km/h</p>
+<div class="relative min-h-[180px] md:min-h-0 h-full">
+<img alt="" class="absolute inset-0 w-full h-full object-cover object-center" src="assets/images/about-travel.png" aria-hidden="true"/>
 </div>
 </div>
-<div class="grid grid-cols-2 gap-4 h-36 md:h-48" id="thumb-gallery">
-<button type="button" class="hero-thumb glass-panel rounded-xl overflow-hidden border border-white/10 hover:border-primary-fixed/50 transition-all cursor-pointer group text-left p-0" aria-label="Swap with route map">
-<img alt="Google Maps route Tiruchirappalli to Bengaluru" class="thumb-img w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity pointer-events-none" src="assets/images/ride-maps.png"/>
-</button>
-<button type="button" class="hero-thumb glass-panel rounded-xl overflow-hidden border border-white/10 hover:border-primary-fixed/50 transition-all cursor-pointer group text-left p-0" aria-label="Swap with POV ride photo">
-<img alt="POV on Duke 200 handlebars" class="thumb-img w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity pointer-events-none" src="assets/images/ride-pov.png"/>
-</button>
-</div>
-</div>
+<div class="about-hero-overlay absolute inset-0" aria-hidden="true"></div>
+<header class="relative z-10 flex flex-col items-center justify-center text-center gap-3 sm:gap-4 px-6 py-14 sm:py-16 md:py-20 max-w-4xl mx-auto">
+<p class="font-label-caps text-label-caps text-primary-fixed tracking-widest">TRICHY → BENGALURU</p>
+<h1 class="font-display-lg text-4xl md:text-display-lg text-white tracking-tight drop-shadow-sm">About Me</h1>
+<p class="font-body-md text-on-surface text-base sm:text-lg max-w-2xl">Silent soul. Creative mind. Explorer at heart. Builder by passion.</p>
+</header>
+</section>
 </div>
 
-<div class="flex flex-col gap-gutter">
-<div id="prompt-section" class="glass-panel prompt-panel p-4 sm:p-6 md:p-12 rounded-xl flex flex-col gap-4 sm:gap-6 relative overflow-hidden h-full max-h-[55vh] sm:max-h-[65vh] lg:max-h-none">
-<div class="absolute -top-24 -right-24 w-48 h-48 bg-primary-fixed/10 blur-[80px] rounded-full pointer-events-none"></div>
-<div class="flex items-start justify-between border-b border-white/10 pb-4 gap-4">
-<div>
-<h3 class="font-label-caps text-label-caps tracking-widest text-primary-fixed">PROMPT:</h3>
-<p class="font-body-md text-on-surface-variant text-sm mt-2">Use this prompt in Chatgpt</p>
+<div class="w-full px-3 sm:px-4 md:px-container-padding">
+<article class="w-full glass-panel rounded-xl p-4 sm:p-6 md:p-10 lg:px-14 lg:py-12 space-y-6 sm:space-y-8 md:space-y-10 text-on-surface-variant font-body-md leading-relaxed text-[15px] sm:text-base md:text-[17px] md:leading-[1.75]">
+<p class="text-on-surface text-lg">Hi, I'm <strong class="text-primary-fixed">Vishnu</strong> — a developer, creator, traveler, designer, and storyteller who believes that good things take time.</p>
+<p>Originally from Trichy and currently based in Bengaluru, I'm someone who enjoys building meaningful digital experiences while also exploring life beyond screens. My world is a mix of technology, creativity, road trips, mountains, sunsets, and quiet moments that turn into memories.</p>
+<p>I believe life is best experienced through both creation and exploration.</p>
+
+<section>
+<h2 class="font-label-caps text-label-caps text-primary-fixed mb-4">MY JOURNEY</h2>
+<ul class="list-disc list-inside space-y-2">
+<li>Software development</li>
+<li>AI &amp; automation</li>
+<li>Cloud and data solutions</li>
+<li>Creative design</li>
+<li>Photography &amp; cinematic edits</li>
+<li>Travel and biking experiences</li>
+<li>Visual storytelling</li>
+</ul>
+</section>
+
+<p>My Instagram, <a class="text-primary-fixed hover:text-white transition-colors" href="https://www.instagram.com/soul.vishnu_" target="_blank" rel="noopener noreferrer">@soul.vishnu_</a>, reflects a part of who I am — calm energy, expressive visuals, sunsets, roads, emotions, silence, motion, and moments that feel real. I enjoy capturing moods more than pictures, and stories more than content.</p>
+
+<section>
+<h2 class="font-label-caps text-label-caps text-primary-fixed mb-4">TECH &amp; PROFESSIONAL JOURNEY</h2>
+<p class="mb-4">I work across multiple technologies and business domains, especially in:</p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li>PL/SQL and SQL development</li>
+<li>Power BI dashboards and paginated reports</li>
+<li>Business automation systems</li>
+<li>Workflow optimization and reporting solutions</li>
+</ul>
+<p class="mb-4">I'm currently involved in projects related to finance banking applications, where I focus on automation, analytics, reporting, and operational efficiency.</p>
+<p>I enjoy creating systems that simplify work, reduce manual effort, and deliver smarter business solutions.</p>
+</section>
+
+<section>
+<h2 class="font-label-caps text-label-caps text-primary-fixed mb-4">CREATIVE &amp; DESIGN SIDE</h2>
+<p class="mb-4">Beyond coding, I also work in the creative space as a Canva-based designer creating:</p>
+<ul class="list-disc list-inside space-y-2 mb-4">
+<li>NGO campaign creatives</li>
+<li>Social media content</li>
+<li>Flyers and infographics</li>
+<li>Presentation and branding materials</li>
+<li>Visual storytelling concepts</li>
+</ul>
+<p>I love creating visuals that feel cinematic, emotional, and minimal.</p>
+</section>
+
+<section>
+<h2 class="font-label-caps text-label-caps text-primary-fixed mb-4">TRAVELER &amp; EXPLORER</h2>
+<p class="mb-4">Travel is one of the biggest parts of who I am. I love road trips, mountain routes, solo rides, peaceful landscapes, and discovering places that feel alive.</p>
+<p class="mb-3">Some of my favorite journeys and explored destinations include:</p>
+<p class="text-sm mb-4">Kodaikanal · Savandurga · Kolli Hills · Pachamalai · Megamalai · Pondicherry · Mangalore · Udupi · Mysore · Ooty · Valparai · Vagamon</p>
+<p class="mb-2 font-label-caps text-[11px] text-primary-fixed tracking-wider">MEMORABLE SOLO TRIPS</p>
+<ul class="list-disc list-inside space-y-1 mb-4">
+<li>Kodaikanal</li>
+<li>Savandurga</li>
+</ul>
+<p class="mb-2 font-label-caps text-[11px] text-primary-fixed tracking-wider">RIDES WITH FAMILY &amp; FRIENDS</p>
+<ul class="list-disc list-inside space-y-1 mb-4">
+<li>Pachamalai trip with my brother</li>
+<li>Kolli Hills</li>
+</ul>
+<p>For me, traveling is not just about destinations — it's about freedom, silence, healing, learning, and collecting stories through roads and experiences.</p>
+</section>
+
+<section>
+<h2 class="font-label-caps text-label-caps text-primary-fixed mb-4">THINGS I LOVE</h2>
+<ul class="list-disc list-inside space-y-2">
+<li>Solo rides and long road trips</li>
+<li>Mountain roads and foggy mornings</li>
+<li>Sunrises and sunsets</li>
+<li>Cinematic photography &amp; editing</li>
+<li>Building automation systems</li>
+<li>AI and backend development</li>
+<li>Dashboard design and analytics</li>
+<li>Quiet places and meaningful conversations</li>
+</ul>
+</section>
+
+<section>
+<h2 class="font-label-caps text-label-caps text-primary-fixed mb-4">MY MINDSET</h2>
+<p class="mb-4">I believe growth comes from consistency, curiosity, patience, and experiences. Whether it's building software, creating visuals, traveling through mountain roads, or solving real-world problems — I always try to create something meaningful.</p>
+<p class="text-on-surface italic border-l-2 border-primary-fixed/40 pl-4">Silent soul. Creative mind. Explorer at heart. Builder by passion.</p>
+</section>
+</article>
 </div>
-<span class="material-symbols-outlined text-primary-fixed opacity-50 shrink-0">terminal</span>
-</div>
-<div class="flex-grow overflow-y-auto pr-0 md:pr-4">
-<p id="prompt-text" class="font-body-md text-on-surface-variant leading-relaxed text-justify selection:bg-primary-fixed/30 whitespace-pre-line">Use the provided biker photo as the ONLY human subject. Maintain identity, face, skin tone, hair, riding gear, helmet, gloves, boots, body proportions, and pose EXACTLY. Do NOT beautify, stylize, or alter the biker in any way. Combine the biker photo with the provided Wheelsafar ride stats screenshot into a single cinematic composition.
 
-Read all visible ride data directly from the Wheelsafar screenshot and reproduce the values EXACTLY as shown. Do not modify, reinterpret, approximate, or redesign any numbers, labels, route shapes, icons, or branding elements.
-
-The real Wheelsafar stats UI with the EXACT numbers and formatting from the screenshot must appear clearly embedded onto the 3D ground beneath the biker, naturally integrated into the asphalt perspective. The stats should feel physically painted, illuminated, or projected onto the road surface with realistic depth, reflections, texture interaction, and environmental lighting. Do NOT make the UI float in the air.
-
-Extract the Wheelsafar route map from the screenshot and project it onto the ground in realistic 3D perspective:
-Location: [TYPE START LOCATION] to [TYPE END LOCATION]
-Distance: [TYPE DISTANCE]
-Top Speed: [TYPE TOP SPEED]
-Average Speed: [TYPE AVERAGE SPEED]
-Bike Name: [TYPE BIKE NAME]
-
-The route must form the main glowing road path beneath and ahead of the biker. The same route must also extend around the biker on the ground, subtly framing the rider composition. The route must feel physically embedded into the asphalt with realistic perspective distortion, edge glow, depth, and light spill. Never make the route holographic or floating. The route glow color must match the Wheelsafar yellow theme exactly, vibrant golden yellow with cinematic contrast. Do NOT change the original background, lighting, environment, or composition from the biker photo. Only embed the Wheelsafar stats and route naturally into the scene as instructed.</p>
-</div>
-<div id="socials" class="pt-4 sm:pt-6 border-t border-white/10 flex flex-col sm:flex-row gap-4 sm:gap-gutter items-stretch sm:items-center justify-between">
+<div id="socials" class="flex flex-col sm:flex-row items-center justify-center gap-gutter pt-4 px-3 sm:px-4 md:px-container-padding w-full">
 <a class="flex items-center gap-3 text-primary-fixed hover:text-white transition-colors group" href="https://www.instagram.com/soul.vishnu_" target="_blank" rel="noopener noreferrer">
 <div class="p-2 rounded-full border border-primary-fixed group-hover:bg-primary-fixed group-hover:text-on-primary-fixed transition-all">
 <span class="material-symbols-outlined text-[20px]">photo_camera</span>
 </div>
-<span class="font-label-caps text-label-caps">Follow me on Instagram</span>
+<span class="font-label-caps text-label-caps">Follow @soul.vishnu_</span>
 </a>
-<button type="button" id="copy-prompt-btn" class="px-3 py-1 rounded-full bg-primary-fixed/10 border border-primary-fixed/20 font-label-caps text-[10px] text-primary-fixed hover:bg-primary-fixed hover:text-on-primary-fixed transition-all cursor-pointer flex items-center gap-1.5">
-<span class="material-symbols-outlined text-[14px]" id="copy-prompt-icon">content_copy</span>
-<span id="copy-prompt-label">Copy Prompt</span>
-</button>
-</div>
 </div>
 
-<div class="grid grid-cols-2 gap-gutter">
-<a href="about.html" class="glass-panel p-6 rounded-xl hover:bg-white/5 transition-all cursor-pointer group block">
-<div class="flex items-center justify-between mb-4">
-<span class="material-symbols-outlined text-primary-fixed">person</span>
-<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
-</div>
-<p class="font-label-caps text-label-caps text-on-surface-variant">ABOUT</p>
-<p class="font-headline-md text-headline-md">About Me</p>
-</a>
-<a href="#rides" class="glass-panel p-6 rounded-xl hover:bg-white/5 transition-all cursor-pointer group block">
-<div class="flex items-center justify-between mb-4">
-<span class="material-symbols-outlined text-primary-fixed">two_wheeler</span>
-<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
-</div>
-<p class="font-label-caps text-label-caps text-on-surface-variant">RIDES</p>
-<p class="font-headline-md text-headline-md">Ride Log</p>
-</a>
-</div>
-</div>
 </div>
 </main>
 
-<footer class="w-full py-12 md:py-section-margin border-t border-outline-variant/20 flex justify-center items-center px-4 md:px-container-padding bg-transparent relative z-10">
+<footer class="w-full py-12 md:py-section-margin border-t border-outline-variant/20 flex justify-center items-center px-4 md:px-container-padding relative z-10">
 <div class="flex items-center gap-4 md:gap-gutter flex-wrap justify-center">
 <a class="text-on-surface-variant hover:text-primary-fixed transition-colors font-label-caps text-label-caps" href="https://www.instagram.com/soul.vishnu_" target="_blank" rel="noopener noreferrer">Instagram</a>
 <a class="text-on-surface-variant hover:text-primary-fixed transition-colors font-label-caps text-label-caps" href="https://www.linkedin.com/in/vishnu-shanmugamm/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -284,51 +253,6 @@ The route must form the main glowing road path beneath and ahead of the biker. T
 </footer>
 
 <script>
-        document.addEventListener('mousemove', (e) => {
-            const panels = document.querySelectorAll('.glass-panel:not(.prompt-panel)');
-            panels.forEach(panel => {
-                const rect = panel.getBoundingClientRect();
-                const dx = (e.clientX - (rect.left + rect.width / 2)) / 100;
-                const dy = (e.clientY - (rect.top + rect.height / 2)) / 100;
-                panel.style.transform = `perspective(1000px) rotateX(${dy * -0.5}deg) rotateY(${dx * 0.5}deg) translateY(0)`;
-            });
-        });
-
-        const copyPromptBtn = document.getElementById('copy-prompt-btn');
-        const copyPromptLabel = document.getElementById('copy-prompt-label');
-        const copyPromptIcon = document.getElementById('copy-prompt-icon');
-        const promptText = document.getElementById('prompt-text');
-
-        copyPromptBtn?.addEventListener('click', async () => {
-            const text = promptText?.innerText?.trim();
-            if (!text) return;
-            try {
-                await navigator.clipboard.writeText(text);
-                copyPromptLabel.textContent = 'Copied!';
-                copyPromptIcon.textContent = 'check';
-                setTimeout(() => {
-                    copyPromptLabel.textContent = 'Copy Prompt';
-                    copyPromptIcon.textContent = 'content_copy';
-                }, 2000);
-            } catch {
-                copyPromptLabel.textContent = 'Copy failed';
-                setTimeout(() => {
-                    copyPromptLabel.textContent = 'Copy Prompt';
-                }, 2000);
-            }
-        });
-
-        const bg = document.querySelector('.liquid-bg');
-        let tick = 0;
-        function animate() {
-            tick += 0.005;
-            const x = Math.sin(tick) * 5;
-            const y = Math.cos(tick) * 5;
-            bg.style.backgroundPosition = `${50 + x}% ${50 + y}%`;
-            requestAnimationFrame(animate);
-        }
-        animate();
-
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
@@ -348,34 +272,13 @@ The route must form the main glowing road path beneath and ahead of the biker. T
             });
         });
 
-        const heroImage = document.getElementById('hero-image');
-        const gallery = document.getElementById('thumb-gallery');
-        const thumbs = document.querySelectorAll('.hero-thumb');
-
-        thumbs.forEach(thumb => {
-            thumb.addEventListener('click', () => {
-                const thumbImg = thumb.querySelector('.thumb-img');
-                if (!thumbImg || !heroImage) return;
-
-                gallery?.classList.add('gallery-swapping');
-
-                const heroSrc = heroImage.getAttribute('src');
-                const heroAlt = heroImage.getAttribute('alt') || '';
-                const thumbSrc = thumbImg.getAttribute('src');
-                const thumbAlt = thumbImg.getAttribute('alt') || '';
-
-                heroImage.setAttribute('src', thumbSrc);
-                heroImage.setAttribute('alt', thumbAlt);
-                thumbImg.setAttribute('src', heroSrc);
-                thumbImg.setAttribute('alt', heroAlt);
-
-                thumb.setAttribute('aria-label', `Swap with ${heroAlt}`);
-
-                requestAnimationFrame(() => {
-                    gallery?.classList.remove('gallery-swapping');
-                });
-            });
-        });
+        const bg = document.querySelector('.liquid-bg');
+        let tick = 0;
+        (function animate() {
+            tick += 0.005;
+            bg.style.backgroundPosition = `${50 + Math.sin(tick) * 5}% ${50 + Math.cos(tick) * 5}%`;
+            requestAnimationFrame(animate);
+        })();
     </script>
 </body>
 </html>

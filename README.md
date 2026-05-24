@@ -22,11 +22,12 @@ Then visit `http://localhost:8080`.
 |------|------|-------------|
 | **Prompt / Showcase** | [`index.html`](index.html) | Ride gallery (AR composite, maps, POV) with image swap, Wheelsafar-style prompt panel, copy-to-clipboard |
 | **About Me** | [`about.html`](about.html) | Bio, journey, tech stack, travel, and creative work |
+| **Travel** | [`travel.html`](travel.html) | Best travel memories — map hero and destination stories |
 
 ## Features
 
 - Dark charcoal + steel glassmorphism UI
-- Header navigation with profile photo: About Me, Prompt, Connect (hamburger menu on mobile)
+- Header navigation with profile photo: About Me, Travel, Prompt, Connect (hamburger menu on mobile)
 - Three-image gallery with **swap** behavior (primary ↔ secondary; all images stay visible)
 - Copy Prompt button for the ChatGPT ride-composite instructions
 - Responsive layout for mobile and desktop
@@ -43,6 +44,7 @@ MySite/
         ├── hero-ar.png       # AR ride composite (default hero)
         ├── ride-maps.png     # Google Maps route
         ├── ride-pov.png      # POV handlebars
+        ├── travel-hero.png   # Travel page hero (waterfall)
         ├── about-work.png    # About page — workspace
         └── about-travel.png  # About page — travel
 ```

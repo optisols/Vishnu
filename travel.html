@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Soul Vishnu — Travel</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .liquid-bg {
+            background: radial-gradient(circle at 20% 30%, rgba(122, 156, 198, 0.12) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(61, 79, 102, 0.18) 0%, transparent 50%), #08090c;
+            position: fixed; inset: 0; z-index: -1;
+        }
+        .nav-link-active { color: #9eb8d9; background: rgba(122, 156, 198, 0.12); }
+        #mobile-menu:not(.hidden) { animation: slideDown 0.2s ease-out; }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .travel-hero-bg img { opacity: 0.35; }
+        .travel-hero-overlay {
+            background: linear-gradient(to bottom, rgba(8, 9, 12, 0.5) 0%, rgba(8, 9, 12, 0.75) 55%, rgba(8, 9, 12, 0.88) 100%);
+        }
+        .map-pin { transform: translate(-50%, -100%); }
+        .map-route-line {
+            stroke: rgba(158, 184, 217, 0.55);
+            stroke-width: 0.35;
+            stroke-dasharray: 1.2 1.8;
+            fill: none;
+        }
+        .dest-card {
+            transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+        }
+        .dest-card:hover {
+            border-color: rgba(122, 156, 198, 0.35);
+            box-shadow: 0 8px 32px rgba(122, 156, 198, 0.12);
+            transform: translateY(-2px);
+        }
+        .dest-card-photo img { opacity: 0.5; }
+        .dest-card-photo.has-photo img { opacity: 1; }
+        .dest-card-photo.has-photo .photo-placeholder { display: none; }
+        .dest-card .favorite-btn.is-active {
+            color: #9eb8d9;
+            border-color: rgba(122, 156, 198, 0.5);
+            background: rgba(122, 156, 198, 0.15);
+        }
+        .dest-card .favorite-btn.is-active .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .dest-story {
+            color: #8b95a8;
+            font-size: 0.8125rem;
+            line-height: 1.65;
+        }
+        @media (min-width: 640px) {
+            .dest-story { font-size: 0.875rem; }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-surface": "#e4e7ec", "primary-fixed-dim": "#7a9cc6", "on-surface-variant": "#8b95a8",
+                        "primary-fixed": "#9eb8d9", "on-primary-fixed": "#0a0d12", "surface": "#0f1116",
+                        "surface-container-low": "#12151c", "outline-variant": "#2a3040"
+                    },
+                    spacing: { gutter: "24px", "container-padding": "40px" },
+                    fontFamily: {
+                        "body-md": ["Inter"], "display-lg": ["Hanken Grotesk"],
+                        "label-caps": ["JetBrains Mono"], "headline-md": ["Hanken Grotesk"]
+                    },
+                    fontSize: {
+                        "body-md": ["16px", { lineHeight: "1.6" }],
+                        "display-lg": ["48px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "label-caps": ["12px", { lineHeight: "1.0", letterSpacing: "0.1em", fontWeight: "500" }],
+                        "headline-md": ["24px", { lineHeight: "1.3", fontWeight: "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden selection:bg-primary-fixed selection:text-on-primary-fixed">
+<div class="liquid-bg"></div>
+
+<header class="site-header fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl border-b border-white/10 shadow-[0_0_20px_rgba(122,156,198,0.08)]">
+<div class="max-w-7xl mx-auto flex items-center justify-between gap-3 h-14 sm:h-16 px-4 sm:px-6 md:px-10">
+<a href="index.html" class="flex items-center gap-2 sm:gap-3 min-w-0 shrink">
+<img alt="Soul Vishnu" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover object-top border border-primary-fixed/40 shrink-0" src="assets/images/about-work.png"/>
+<span class="font-display-lg text-base sm:text-lg md:text-xl text-primary-fixed-dim tracking-tighter truncate">Soul.Vishnu_</span>
+</a>
+<nav class="hidden md:flex items-center gap-1" aria-label="Main navigation">
+<a class="flex items-center gap-2 px-3 py-2 rounded-lg font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all" href="index.html"><span class="material-symbols-outlined text-[20px]">person</span>About Me</a>
+<a class="nav-link-active flex items-center gap-2 px-3 py-2 rounded-lg font-label-caps text-label-caps transition-all" href="travel.html"><span class="material-symbols-outlined text-[20px]">map</span>Travel</a>
+<a class="flex items-center gap-2 px-3 py-2 rounded-lg font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all" href="prompt.html"><span class="material-symbols-outlined text-[20px]">terminal</span>Prompt</a>
+<a class="flex items-center gap-2 px-3 py-2 rounded-lg font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all" href="#socials"><span class="material-symbols-outlined text-[20px]">alternate_email</span>Connect</a>
+</nav>
+<button type="button" id="menu-toggle" class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg border border-white/10 text-on-surface hover:bg-white/5 transition-all" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+<span class="material-symbols-outlined text-[24px]" id="menu-icon">menu</span>
+</button>
+</div>
+<nav id="mobile-menu" class="hidden md:hidden border-t border-white/10 bg-surface/95 backdrop-blur-xl px-4 py-3 flex flex-col gap-1" aria-label="Mobile navigation">
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg font-label-caps text-label-caps text-on-surface-variant hover:bg-white/10 transition-all" href="index.html"><span class="material-symbols-outlined text-[22px]">person</span>About Me</a>
+<a class="nav-link-active flex items-center gap-3 px-3 py-3 rounded-lg font-label-caps text-label-caps transition-all" href="travel.html"><span class="material-symbols-outlined text-[22px]">map</span>Travel</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg font-label-caps text-label-caps text-on-surface-variant hover:bg-white/10 transition-all" href="prompt.html"><span class="material-symbols-outlined text-[22px]">terminal</span>Prompt</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg font-label-caps text-label-caps text-on-surface-variant hover:bg-white/10 transition-all" href="#socials"><span class="material-symbols-outlined text-[22px]">alternate_email</span>Connect</a>
+</nav>
+</header>
+
+<main class="pt-[4.25rem] sm:pt-20 pb-12 sm:pb-16 w-full">
+<div class="w-full flex flex-col gap-8 sm:gap-10 md:gap-12">
+
+<div class="w-full px-3 sm:px-4 md:px-container-padding">
+<section class="travel-hero relative w-full rounded-xl overflow-hidden border border-white/10 min-h-[340px] sm:min-h-[400px] md:min-h-[48vh] md:max-h-[560px]">
+<div class="travel-hero-bg absolute inset-0">
+<img alt="KTM Duke 200 at golden hour" class="absolute inset-0 w-full h-full object-cover object-center" src="assets/images/travel-hero.png"/>
+</div>
+<div class="travel-hero-overlay absolute inset-0" aria-hidden="true"></div>
+
+<svg class="absolute inset-0 w-full h-full z-10 pointer-events-none hidden sm:block" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+<path class="map-route-line" d="M 12,72 L 22,58 L 32,48 L 42,38 L 38,42 L 50,68 L 46,76 L 58,40 L 55,52 L 70,70 L 76,64 L 88,78 L 30,44"/>
+</svg>
+
+<div class="absolute inset-0 z-20 pointer-events-none hidden sm:block" aria-hidden="true">
+<div class="map-pin absolute" style="left:12%;top:72%"><span class="material-symbols-outlined text-primary-fixed text-[18px] drop-shadow-lg" style="font-variation-settings:'FILL' 1">location_on</span><span class="block font-label-caps text-[9px] text-white mt-0.5 whitespace-nowrap drop-shadow-md">Kodaikanal</span></div>
+<div class="map-pin absolute" style="left:22%;top:58%"><span class="material-symbols-outlined text-primary-fixed text-[18px] drop-shadow-lg" style="font-variation-settings:'FILL' 1">location_on</span><span class="block font-label-caps text-[9px] text-white mt-0.5 whitespace-nowrap drop-shadow-md">Megamalai</span></div>
+<div class="map-pin absolute" style="left:32%;top:48%"><span class="material-symbols-outlined text-primary-fixed text-[18px] drop-shadow-lg" style="font-variation-settings:'FILL' 1">location_on</span><span class="block font-label-caps text-[9px] text-white mt-0.5 whitespace-nowrap drop-shadow-md">Valparai</span></div>
+<div class="map-pin absolute" style="left:42%;top:38%"><span class="material-symbols-outlined text-primary-fixed text-[18px] drop-shadow-lg" style="font-variation-settings:'FILL' 1">location_on</span><span class="block font-label-caps text-[9px] text-white mt-0.5 whitespace-nowrap drop-shadow-md">Ooty</span></div>
+<div class="map-pin absolute" style="left:30%;top:44%"><span class="material-symbols-outlined text-primary-fixed text-[18px] drop-shadow-lg" style="font-variation-settings:'FILL' 1">location_on</span><span class="block font-label-caps text-[9px] text-white mt-0.5 whitespace-nowrap drop-shadow-md">Vagamon</span></div>
+<div class="map-pin absolute" style="left:50%;top:68%"><span class="material-symbols-outlined text-primary-fixed text-[18px] drop-shadow-lg" style="font-variation-settings:'FILL' 1">location_on</span><span class="block font-label-caps text-[9px] text-white mt-0.5 whitespace-nowrap drop-shadow-md">Kolli Hills</span></div>
+<div class="map-pin absolute" style="left:46%;top:76%"><span class="material-symbols-outlined text-primary-fixed text-[18px] drop-shadow-lg" style="font-variation-settings:'FILL' 1">location_on</span><span class="block font-label-caps text-[9px] text-white mt-0.5 whitespace-nowrap drop-shadow-md">Pachamalai</span></div>
+<div class="map-pin absolute" style="left:58%;top:40%"><span class="material-symbols-outlined text-primary-fixed text-[18px] drop-shadow-lg" style="font-variation-settings:'FILL' 1">location_on</span><span class="block font-label-caps text-[9px] text-white mt-0.5 whitespace-nowrap drop-shadow-md">Savandurga</span></div>
+<div class="map-pin absolute" style="left:55%;top:52%"><span class="material-symbols-outlined text-primary-fixed text-[18px] drop-shadow-lg" style="font-variation-settings:'FILL' 1">location_on</span><span class="block font-label-caps text-[9px] text-white mt-0.5 whitespace-nowrap drop-shadow-md">Mysore</span></div>
+<div class="map-pin absolute" style="left:70%;top:70%"><span class="material-symbols-outlined text-primary-fixed text-[18px] drop-shadow-lg" style="font-variation-settings:'FILL' 1">location_on</span><span class="block font-label-caps text-[9px] text-white mt-0.5 whitespace-nowrap drop-shadow-md">Mangalore</span></div>
+<div class="map-pin absolute" style="left:76%;top:64%"><span class="material-symbols-outlined text-primary-fixed text-[18px] drop-shadow-lg" style="font-variation-settings:'FILL' 1">location_on</span><span class="block font-label-caps text-[9px] text-white mt-0.5 whitespace-nowrap drop-shadow-md">Udupi</span></div>
+<div class="map-pin absolute" style="left:88%;top:78%"><span class="material-symbols-outlined text-primary-fixed text-[18px] drop-shadow-lg" style="font-variation-settings:'FILL' 1">location_on</span><span class="block font-label-caps text-[9px] text-white mt-0.5 whitespace-nowrap drop-shadow-md">Pondicherry</span></div>
+</div>
+
+<header class="relative z-30 flex flex-col items-center justify-center text-center gap-3 px-6 py-12 sm:py-14 md:py-16 max-w-4xl mx-auto">
+<p class="font-label-caps text-label-caps text-primary-fixed tracking-widest">BEST TRAVEL MEMORIES</p>
+<h1 class="font-display-lg text-4xl md:text-display-lg text-white tracking-tight drop-shadow-sm">Travel</h1>
+<p class="font-body-md text-on-surface text-sm sm:text-base max-w-xl">Roads, mountains, waterfalls, and stories collected across South India.</p>
+<p class="font-label-caps text-[10px] text-on-surface-variant sm:hidden pt-2">12 destinations · scroll below</p>
+</header>
+</section>
+</div>
+
+<div class="w-full px-3 sm:px-4 md:px-container-padding flex flex-col gap-6 md:gap-8">
+
+<div id="destinations-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 w-full">
+
+<article class="dest-card glass-panel rounded-2xl border border-white/10 flex flex-col pb-4">
+<div class="dest-card-photo has-photo relative m-3 mb-0 aspect-[4/3] rounded-xl overflow-hidden bg-surface-container-low border border-white/10">
+<img alt="Kodaikanal waterfall trek" class="w-full h-full object-cover object-center" src="assets/images/kodaikanal.png" data-dest-image/>
+<div class="photo-placeholder absolute inset-0 bg-surface/30 flex items-center justify-center pointer-events-none"><span class="material-symbols-outlined text-3xl text-on-surface-variant/35">add_photo_alternate</span></div>
+</div>
+<div class="px-4 pt-4 pb-3 flex flex-col flex-grow relative">
+<h2 class="font-display-lg text-xl sm:text-2xl text-primary-fixed tracking-tight uppercase pr-12">Kodaikanal</h2>
+<p class="font-body-md text-on-surface-variant text-sm mt-1.5">Solo Trip</p>
+<p class="dest-story mt-3 pr-1 pb-10">A memorable solo escape into the misty hills — one of my favourite mountain journeys. The road up was slow, scenic, and worth every turn. I will add my personal photos and full story here soon: the viewpoints, the lake air, and the quiet moments that made Kodaikanal stay with me.</p>
+<button type="button" class="favorite-btn absolute bottom-3 right-3 w-10 h-10 rounded-full border border-white/15 bg-surface/40 flex items-center justify-center text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed/40 transition-all" aria-label="Save Kodaikanal to favorites"><span class="material-symbols-outlined text-[22px]">favorite</span></button>
+</div>
+</article>
+
+<article class="dest-card glass-panel rounded-2xl border border-white/10 flex flex-col pb-4">
+<div class="dest-card-photo has-photo relative m-3 mb-0 aspect-[4/3] rounded-xl overflow-hidden bg-surface-container-low border border-white/10">
+<img alt="Savandurga hilltop view" class="w-full h-full object-cover object-center" src="assets/images/savandurga.png" data-dest-image/>
+<div class="photo-placeholder absolute inset-0 bg-surface/30 flex items-center justify-center pointer-events-none"><span class="material-symbols-outlined text-3xl text-on-surface-variant/35">add_photo_alternate</span></div>
+</div>
+<div class="px-4 pt-4 pb-3 flex flex-col flex-grow relative">
+<h2 class="font-display-lg text-xl sm:text-2xl text-primary-fixed tracking-tight uppercase pr-12">Savandurga</h2>
+<p class="font-body-md text-on-surface-variant text-sm mt-1.5">Solo Trekking</p>
+<p class="dest-story mt-3 pr-1 pb-10">Solo trip to the monolith — raw rock, open sky, and a climb that clears the mind. An early start, steady steps, and the view from the top made every bit of effort worth it. Photos and the complete trek story will be added here soon.</p>
+<button type="button" class="favorite-btn absolute bottom-3 right-3 w-10 h-10 rounded-full border border-white/15 bg-surface/40 flex items-center justify-center text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed/40 transition-all" aria-label="Save Savandurga to favorites"><span class="material-symbols-outlined text-[22px]">favorite</span></button>
+</div>
+</article>
+
+<article class="dest-card glass-panel rounded-2xl border border-white/10 flex flex-col pb-4">
+<div class="dest-card-photo has-photo relative m-3 mb-0 aspect-[4/3] rounded-xl overflow-hidden bg-surface-container-low border border-white/10">
+<img alt="Kolli Hills 70 hairpin bends ride" class="w-full h-full object-cover object-center" src="assets/images/kolli-hills.png" data-dest-image/>
+<div class="photo-placeholder absolute inset-0 bg-surface/30 flex items-center justify-center pointer-events-none"><span class="material-symbols-outlined text-3xl text-on-surface-variant/35">add_photo_alternate</span></div>
+</div>
+<div class="px-4 pt-4 pb-3 flex flex-col flex-grow relative">
+<h2 class="font-display-lg text-xl sm:text-2xl text-primary-fixed tracking-tight uppercase pr-12">Kolli Hills</h2>
+<p class="font-body-md text-on-surface-variant text-sm mt-1.5">Friends Trip</p>
+<p class="dest-story mt-3 pr-1 pb-10">Riding the hairpin loops with friends — fog, forest, and endless curves on Kolli Hills. Laughter at every bend, chai stops in the mist, and roads that feel endless in the best way. I will share the full journey story and pictures from this ride soon.</p>
+<button type="button" class="favorite-btn absolute bottom-3 right-3 w-10 h-10 rounded-full border border-white/15 bg-surface/40 flex items-center justify-center text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed/40 transition-all" aria-label="Save Kolli Hills to favorites"><span class="material-symbols-outlined text-[22px]">favorite</span></button>
+</div>
+</article>
+
+<article class="dest-card glass-panel rounded-2xl border border-white/10 flex flex-col pb-4">
+<div class="dest-card-photo has-photo relative m-3 mb-0 aspect-[4/3] rounded-xl overflow-hidden bg-surface-container-low border border-white/10">
+<img alt="Pachamalai mountain viewpoint" class="w-full h-full object-cover object-center" src="assets/images/pachamalai.png" data-dest-image/>
+<div class="photo-placeholder absolute inset-0 bg-surface/30 flex items-center justify-center pointer-events-none"><span class="material-symbols-outlined text-3xl text-on-surface-variant/35">add_photo_alternate</span></div>
+</div>
+<div class="px-4 pt-4 pb-3 flex flex-col flex-grow relative">
+<h2 class="font-display-lg text-xl sm:text-2xl text-primary-fixed tracking-tight uppercase pr-12">Pachamalai</h2>
+<p class="font-body-md text-on-surface-variant text-sm mt-1.5">Trip with Brother</p>
+<p class="dest-story mt-3 pr-1 pb-10">A meaningful trip with my brother through green hills and quiet village roads in Pachamalai. Family time on two wheels, simple meals, and landscapes we still talk about. Personal photos and the complete story of this journey will go here soon.</p>
+<button type="button" class="favorite-btn absolute bottom-3 right-3 w-10 h-10 rounded-full border border-white/15 bg-surface/40 flex items-center justify-center text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed/40 transition-all" aria-label="Save Pachamalai to favorites"><span class="material-symbols-outlined text-[22px]">favorite</span></button>
+</div>
+</article>
+
+<article class="dest-card glass-panel rounded-2xl border border-white/10 flex flex-col pb-4">
+<div class="dest-card-photo has-photo relative m-3 mb-0 aspect-[4/3] rounded-xl overflow-hidden bg-surface-container-low border border-white/10">
+<img alt="Megamalai trip with friends" class="w-full h-full object-cover object-center" src="assets/images/megamalai.png" data-dest-image/>
+<div class="photo-placeholder absolute inset-0 bg-surface/30 flex items-center justify-center pointer-events-none"><span class="material-symbols-outlined text-3xl text-on-surface-variant/35">add_photo_alternate</span></div>
+</div>
+<div class="px-4 pt-4 pb-3 flex flex-col flex-grow relative">
+<h2 class="font-display-lg text-xl sm:text-2xl text-primary-fixed tracking-tight uppercase pr-12">Megamalai</h2>
+<p class="font-body-md text-on-surface-variant text-sm mt-1.5">Hill Ride</p>
+<p class="dest-story mt-3 pr-1 pb-10">High-range tea country and cool air — Megamalai feels far from the city in the best way. Plantation roads, misty mornings, and a pace that lets you actually breathe. I will add my photos and the full ride story here soon.</p>
+<button type="button" class="favorite-btn absolute bottom-3 right-3 w-10 h-10 rounded-full border border-white/15 bg-surface/40 flex items-center justify-center text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed/40 transition-all" aria-label="Save Megamalai to favorites"><span class="material-symbols-outlined text-[22px]">favorite</span></button>
+</div>
+</article>
+
+<article class="dest-card glass-panel rounded-2xl border border-white/10 flex flex-col pb-4">
+<div class="dest-card-photo relative m-3 mb-0 aspect-[4/3] rounded-xl overflow-hidden bg-surface-container-low border border-white/10">
+<img alt="Pondicherry — photo coming soon" class="w-full h-full object-cover" src="assets/images/travel-hero.png" data-dest-image/>
+<div class="photo-placeholder absolute inset-0 bg-surface/30 flex items-center justify-center pointer-events-none"><span class="material-symbols-outlined text-3xl text-on-surface-variant/35">add_photo_alternate</span></div>
+</div>
+<div class="px-4 pt-4 pb-3 flex flex-col flex-grow relative">
+<h2 class="font-display-lg text-xl sm:text-2xl text-primary-fixed tracking-tight uppercase pr-12">Pondicherry</h2>
+<p class="font-body-md text-on-surface-variant text-sm mt-1.5">Coastal Trip</p>
+<p class="dest-story mt-3 pr-1 pb-10">Coastal colours, café stops, and slow evenings by the sea in Pondicherry. The ride in, the promenade walks, and the mood of the French quarter still feel fresh in memory. My Pondicherry story and pictures are coming soon.</p>
+<button type="button" class="favorite-btn absolute bottom-3 right-3 w-10 h-10 rounded-full border border-white/15 bg-surface/40 flex items-center justify-center text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed/40 transition-all" aria-label="Save Pondicherry to favorites"><span class="material-symbols-outlined text-[22px]">favorite</span></button>
+</div>
+</article>
+
+<article class="dest-card glass-panel rounded-2xl border border-white/10 flex flex-col pb-4">
+<div class="dest-card-photo has-photo relative m-3 mb-0 aspect-[4/3] rounded-xl overflow-hidden bg-surface-container-low border border-white/10">
+<img alt="Mangalore beach" class="w-full h-full object-cover object-center" src="assets/images/mangalore.png" data-dest-image/>
+<div class="photo-placeholder absolute inset-0 bg-surface/30 flex items-center justify-center pointer-events-none"><span class="material-symbols-outlined text-3xl text-on-surface-variant/35">add_photo_alternate</span></div>
+</div>
+<div class="px-4 pt-4 pb-3 flex flex-col flex-grow relative">
+<h2 class="font-display-lg text-xl sm:text-2xl text-primary-fixed tracking-tight uppercase pr-12">Mangalore</h2>
+<p class="font-body-md text-on-surface-variant text-sm mt-1.5">Coastal Ride</p>
+<p class="dest-story mt-3 pr-1 pb-10">Coastal Karnataka — food, harbour air, and long roads that smell like the ocean near Mangalore. Every stop had something worth remembering, from meals to quiet stretches by the water. I will document the full trip with personal photos and story soon.</p>
+<button type="button" class="favorite-btn absolute bottom-3 right-3 w-10 h-10 rounded-full border border-white/15 bg-surface/40 flex items-center justify-center text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed/40 transition-all" aria-label="Save Mangalore to favorites"><span class="material-symbols-outlined text-[22px]">favorite</span></button>
+</div>
+</article>
+
+<article class="dest-card glass-panel rounded-2xl border border-white/10 flex flex-col pb-4">
+<div class="dest-card-photo has-photo relative m-3 mb-0 aspect-[4/3] rounded-xl overflow-hidden bg-surface-container-low border border-white/10">
+<img alt="Udupi Kaup lighthouse" class="w-full h-full object-cover object-center" src="assets/images/udupi.png" data-dest-image/>
+<div class="photo-placeholder absolute inset-0 bg-surface/30 flex items-center justify-center pointer-events-none"><span class="material-symbols-outlined text-3xl text-on-surface-variant/35">add_photo_alternate</span></div>
+</div>
+<div class="px-4 pt-4 pb-3 flex flex-col flex-grow relative">
+<h2 class="font-display-lg text-xl sm:text-2xl text-primary-fixed tracking-tight uppercase pr-12">Udupi</h2>
+<p class="font-body-md text-on-surface-variant text-sm mt-1.5">Coastal Trip</p>
+<p class="dest-story mt-3 pr-1 pb-10">Temple town meets coastline — devotion, beaches, and good meals along the Udupi stretch. The route was calm, the stops were simple, and the ocean was never far away. Photos and journey notes from this trip will be added here soon.</p>
+<button type="button" class="favorite-btn absolute bottom-3 right-3 w-10 h-10 rounded-full border border-white/15 bg-surface/40 flex items-center justify-center text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed/40 transition-all" aria-label="Save Udupi to favorites"><span class="material-symbols-outlined text-[22px]">favorite</span></button>
+</div>
+</article>
+
+<article class="dest-card glass-panel rounded-2xl border border-white/10 flex flex-col pb-4">
+<div class="dest-card-photo relative m-3 mb-0 aspect-[4/3] rounded-xl overflow-hidden bg-surface-container-low border border-white/10">
+<img alt="Mysore — photo coming soon" class="w-full h-full object-cover" src="assets/images/travel-hero.png" data-dest-image/>
+<div class="photo-placeholder absolute inset-0 bg-surface/30 flex items-center justify-center pointer-events-none"><span class="material-symbols-outlined text-3xl text-on-surface-variant/35">add_photo_alternate</span></div>
+</div>
+<div class="px-4 pt-4 pb-3 flex flex-col flex-grow relative">
+<h2 class="font-display-lg text-xl sm:text-2xl text-primary-fixed tracking-tight uppercase pr-12">Mysore</h2>
+<p class="font-body-md text-on-surface-variant text-sm mt-1.5">Heritage Ride</p>
+<p class="dest-story mt-3 pr-1 pb-10">Royal city lights, Chamundi hills, and classic Karnataka roads into Mysore. The palace glow at dusk, evening air, and unhurried rides through heritage streets left a strong mark. My personal travel story and images from this journey will be added soon.</p>
+<button type="button" class="favorite-btn absolute bottom-3 right-3 w-10 h-10 rounded-full border border-white/15 bg-surface/40 flex items-center justify-center text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed/40 transition-all" aria-label="Save Mysore to favorites"><span class="material-symbols-outlined text-[22px]">favorite</span></button>
+</div>
+</article>
+
+<article class="dest-card glass-panel rounded-2xl border border-white/10 flex flex-col pb-4">
+<div class="dest-card-photo relative m-3 mb-0 aspect-[4/3] rounded-xl overflow-hidden bg-surface-container-low border border-white/10">
+<img alt="Ooty — photo coming soon" class="w-full h-full object-cover" src="assets/images/travel-hero.png" data-dest-image/>
+<div class="photo-placeholder absolute inset-0 bg-surface/30 flex items-center justify-center pointer-events-none"><span class="material-symbols-outlined text-3xl text-on-surface-variant/35">add_photo_alternate</span></div>
+</div>
+<div class="px-4 pt-4 pb-3 flex flex-col flex-grow relative">
+<h2 class="font-display-lg text-xl sm:text-2xl text-primary-fixed tracking-tight uppercase pr-12">Ooty</h2>
+<p class="font-body-md text-on-surface-variant text-sm mt-1.5">Hill Station</p>
+<p class="dest-story mt-3 pr-1 pb-10">Nilgiri hairpins, tea gardens, and cool mountain air — Ooty never gets old. Every ride feels like a postcard slowly coming to life. My full story and photos from this journey will be added here soon.</p>
+<button type="button" class="favorite-btn absolute bottom-3 right-3 w-10 h-10 rounded-full border border-white/15 bg-surface/40 flex items-center justify-center text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed/40 transition-all" aria-label="Save Ooty to favorites"><span class="material-symbols-outlined text-[22px]">favorite</span></button>
+</div>
+</article>
+
+<article class="dest-card glass-panel rounded-2xl border border-white/10 flex flex-col pb-4">
+<div class="dest-card-photo relative m-3 mb-0 aspect-[4/3] rounded-xl overflow-hidden bg-surface-container-low border border-white/10">
+<img alt="Valparai — photo coming soon" class="w-full h-full object-cover" src="assets/images/travel-hero.png" data-dest-image/>
+<div class="photo-placeholder absolute inset-0 bg-surface/30 flex items-center justify-center pointer-events-none"><span class="material-symbols-outlined text-3xl text-on-surface-variant/35">add_photo_alternate</span></div>
+</div>
+<div class="px-4 pt-4 pb-3 flex flex-col flex-grow relative">
+<h2 class="font-display-lg text-xl sm:text-2xl text-primary-fixed tracking-tight uppercase pr-12">Valparai</h2>
+<p class="font-body-md text-on-surface-variant text-sm mt-1.5">Tea Trail</p>
+<p class="dest-story mt-3 pr-1 pb-10">Tea estates, wildlife crossings, and roads that feel like a movie scene in Valparai. Mist on the leaves, slow traffic, and green stretching in every direction. Valparai memories — photos and the full story — will be updated here soon.</p>
+<button type="button" class="favorite-btn absolute bottom-3 right-3 w-10 h-10 rounded-full border border-white/15 bg-surface/40 flex items-center justify-center text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed/40 transition-all" aria-label="Save Valparai to favorites"><span class="material-symbols-outlined text-[22px]">favorite</span></button>
+</div>
+</article>
+
+<article class="dest-card glass-panel rounded-2xl border border-white/10 flex flex-col pb-4">
+<div class="dest-card-photo relative m-3 mb-0 aspect-[4/3] rounded-xl overflow-hidden bg-surface-container-low border border-white/10">
+<img alt="Vagamon — photo coming soon" class="w-full h-full object-cover" src="assets/images/travel-hero.png" data-dest-image/>
+<div class="photo-placeholder absolute inset-0 bg-surface/30 flex items-center justify-center pointer-events-none"><span class="material-symbols-outlined text-3xl text-on-surface-variant/35">add_photo_alternate</span></div>
+</div>
+<div class="px-4 pt-4 pb-3 flex flex-col flex-grow relative">
+<h2 class="font-display-lg text-xl sm:text-2xl text-primary-fixed tracking-tight uppercase pr-12">Vagamon</h2>
+<p class="font-body-md text-on-surface-variant text-sm mt-1.5">Meadow Trip</p>
+<p class="dest-story mt-3 pr-1 pb-10">Rolling meadows and pine slopes in Kerala’s high country — Vagamon is peaceful and wide open. The wind, the grass, and the long quiet roads make it a place you want to return to. I will share my journey story and personal pictures from Vagamon soon.</p>
+<button type="button" class="favorite-btn absolute bottom-3 right-3 w-10 h-10 rounded-full border border-white/15 bg-surface/40 flex items-center justify-center text-on-surface-variant hover:text-primary-fixed hover:border-primary-fixed/40 transition-all" aria-label="Save Vagamon to favorites"><span class="material-symbols-outlined text-[22px]">favorite</span></button>
+</div>
+</article>
+
+</div>
+</div>
+
+<div id="socials" class="flex justify-center px-3 sm:px-4 md:px-container-padding pt-2">
+<a class="flex items-center gap-3 text-primary-fixed hover:text-white transition-colors group" href="https://www.instagram.com/soul.vishnu_" target="_blank" rel="noopener noreferrer">
+<div class="p-2 rounded-full border border-primary-fixed group-hover:bg-primary-fixed group-hover:text-on-primary-fixed transition-all">
+<span class="material-symbols-outlined text-[20px]">photo_camera</span>
+</div>
+<span class="font-label-caps text-label-caps">Follow @soul.vishnu_</span>
+</a>
+</div>
+
+</div>
+</main>
+
+<footer class="w-full py-12 md:py-section-margin border-t border-outline-variant/20 flex justify-center items-center px-4 md:px-container-padding relative z-10 mt-8">
+<div class="flex items-center gap-4 md:gap-gutter flex-wrap justify-center">
+<a class="text-on-surface-variant hover:text-primary-fixed transition-colors font-label-caps text-label-caps" href="https://www.instagram.com/soul.vishnu_" target="_blank" rel="noopener noreferrer">Instagram</a>
+<a class="text-on-surface-variant hover:text-primary-fixed transition-colors font-label-caps text-label-caps" href="https://www.linkedin.com/in/vishnu-shanmugamm/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+</div>
+</footer>
+
+<script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        menuToggle?.addEventListener('click', () => {
+            const open = mobileMenu?.classList.toggle('hidden') === false;
+            menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+            if (menuIcon) menuIcon.textContent = open ? 'close' : 'menu';
+        });
+        mobileMenu?.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuToggle?.setAttribute('aria-expanded', 'false');
+                if (menuIcon) menuIcon.textContent = 'menu';
+            });
+        });
+        document.querySelectorAll('.favorite-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                btn.classList.toggle('is-active');
+            });
+        });
+
+        const bg = document.querySelector('.liquid-bg');
+        let tick = 0;
+        (function animate() {
+            tick += 0.005;
+            bg.style.backgroundPosition = `${50 + Math.sin(tick) * 5}% ${50 + Math.cos(tick) * 5}%`;
+            requestAnimationFrame(animate);
+        })();
+    </script>
+</body>
+</html>
