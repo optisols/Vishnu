@@ -26,7 +26,7 @@ Then visit `http://localhost:8080`.
 ## Features
 
 - Dark charcoal + steel glassmorphism UI
-- Collapsible sidebar (icons → expands on hover): About Me, Prompt, Connect
+- Header navigation with profile photo: About Me, Prompt, Connect (hamburger menu on mobile)
 - Three-image gallery with **swap** behavior (primary ↔ secondary; all images stay visible)
 - Copy Prompt button for the ChatGPT ride-composite instructions
 - Responsive layout for mobile and desktop

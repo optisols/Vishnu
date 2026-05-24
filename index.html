@@ -48,6 +48,17 @@
             background: rgba(255, 255, 255, 0.05);
             box-shadow: 0 0 24px rgba(122, 156, 198, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.06);
         }
+        .nav-link-active {
+            color: #9eb8d9;
+            background: rgba(122, 156, 198, 0.12);
+        }
+        #mobile-menu:not(.hidden) {
+            animation: slideDown 0.2s ease-out;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
@@ -147,41 +158,36 @@
 <body class="bg-surface text-on-surface font-body-md overflow-x-hidden selection:bg-primary-fixed selection:text-on-primary-fixed">
 <div class="liquid-bg"></div>
 
-<nav class="fixed top-0 w-full z-50 bg-surface/30 backdrop-blur-xl border-b border-white/10 shadow-[0_0_20px_rgba(122,156,198,0.08)] duration-300 ease-in-out flex justify-between items-center px-4 md:px-container-padding h-16 md:h-20 max-w-full">
-<a href="index.html" class="font-display-lg text-xl md:text-2xl text-primary-fixed-dim tracking-tighter">Soul.Vishnu_</a>
-<div class="hidden md:flex items-center gap-gutter">
-<a class="text-primary-fixed font-bold border-b-2 border-primary-fixed pb-1 font-body-md text-body-md" href="index.html">Prompt</a>
-<a class="text-on-surface-variant hover:text-on-surface transition-colors font-body-md text-body-md" href="about.html">About</a>
-<a class="text-on-surface-variant hover:text-on-surface transition-colors font-body-md text-body-md" href="#socials">Socials</a>
-</div>
+<header class="site-header fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl border-b border-white/10 shadow-[0_0_20px_rgba(122,156,198,0.08)]">
+<div class="max-w-7xl mx-auto flex items-center justify-between gap-3 h-14 sm:h-16 px-4 sm:px-6 md:px-10">
+<a href="index.html" class="flex items-center gap-2 sm:gap-3 min-w-0 shrink">
+<img alt="Soul Vishnu" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover object-top border border-primary-fixed/40 shrink-0" src="assets/images/about-work.png"/>
+<span class="font-display-lg text-base sm:text-lg md:text-xl text-primary-fixed-dim tracking-tighter truncate">Soul.Vishnu_</span>
+</a>
+<nav class="hidden md:flex items-center gap-1" aria-label="Main navigation">
+<a class="flex items-center gap-2 px-3 py-2 rounded-lg font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all" href="about.html">
+<span class="material-symbols-outlined text-[20px]">person</span>About Me</a>
+<a class="nav-link-active flex items-center gap-2 px-3 py-2 rounded-lg font-label-caps text-label-caps transition-all" href="index.html">
+<span class="material-symbols-outlined text-[20px]">terminal</span>Prompt</a>
+<a class="flex items-center gap-2 px-3 py-2 rounded-lg font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all" href="#socials">
+<span class="material-symbols-outlined text-[20px]">alternate_email</span>Connect</a>
 </nav>
-
-<aside class="sidebar-nav hidden md:flex fixed left-0 top-0 h-full w-20 hover:w-64 transition-all duration-500 ease-in-out z-40 flex-col border-r border-white/5 bg-surface-container-low/30 backdrop-blur-2xl pt-24 pb-8 px-3 hover:px-5 group overflow-hidden">
-<a href="index.html" class="hidden group-hover:block font-display-lg text-xl text-primary-fixed-dim tracking-tighter mb-8 whitespace-nowrap">Soul.Vishnu_</a>
-<div class="flex flex-col items-center gap-3 mb-10 w-full">
-<div class="w-12 h-12 group-hover:w-24 group-hover:h-24 rounded-full overflow-hidden border border-primary-fixed/30 transition-all duration-500 shrink-0">
-<img alt="Soul Vishnu portrait" class="w-full h-full object-cover object-top" src="assets/images/about-work.png"/>
+<button type="button" id="menu-toggle" class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg border border-white/10 text-on-surface hover:bg-white/5 transition-all" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+<span class="material-symbols-outlined text-[24px]" id="menu-icon">menu</span>
+</button>
 </div>
-<p class="hidden group-hover:block font-display-lg text-headline-md text-primary-fixed-dim whitespace-nowrap">Soul Vishnu</p>
-</div>
-<nav class="flex flex-col gap-1 w-full">
-<a class="flex items-center justify-center group-hover:justify-start gap-0 group-hover:gap-4 py-3 px-2 group-hover:px-4 w-full text-on-surface-variant opacity-70 hover:bg-white/10 hover:opacity-100 transition-all rounded-r-lg" href="about.html">
-<span class="material-symbols-outlined text-[22px] shrink-0">person</span>
-<span class="hidden group-hover:inline font-label-caps text-label-caps whitespace-nowrap">About Me</span>
-</a>
-<a class="flex items-center justify-center group-hover:justify-start gap-0 group-hover:gap-4 py-3 px-2 group-hover:px-4 w-full text-primary-fixed border-l-2 border-primary-fixed bg-primary-fixed/5 transition-all rounded-r-lg" href="index.html">
-<span class="material-symbols-outlined text-[22px] shrink-0">terminal</span>
-<span class="hidden group-hover:inline font-label-caps text-label-caps whitespace-nowrap">Prompt</span>
-</a>
-<a class="flex items-center justify-center group-hover:justify-start gap-0 group-hover:gap-4 py-3 px-2 group-hover:px-4 w-full text-on-surface-variant opacity-70 hover:bg-white/10 hover:opacity-100 transition-all rounded-r-lg" href="#socials">
-<span class="material-symbols-outlined text-[22px] shrink-0">alternate_email</span>
-<span class="hidden group-hover:inline font-label-caps text-label-caps whitespace-nowrap">Connect</span>
-</a>
+<nav id="mobile-menu" class="hidden md:hidden border-t border-white/10 bg-surface/95 backdrop-blur-xl px-4 py-3 flex flex-col gap-1" aria-label="Mobile navigation">
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg font-label-caps text-label-caps text-on-surface-variant hover:bg-white/10 transition-all" href="about.html">
+<span class="material-symbols-outlined text-[22px]">person</span>About Me</a>
+<a class="nav-link-active flex items-center gap-3 px-3 py-3 rounded-lg font-label-caps text-label-caps transition-all" href="index.html">
+<span class="material-symbols-outlined text-[22px]">terminal</span>Prompt</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg font-label-caps text-label-caps text-on-surface-variant hover:bg-white/10 transition-all" href="#socials">
+<span class="material-symbols-outlined text-[22px]">alternate_email</span>Connect</a>
 </nav>
-</aside>
+</header>
 
-<main id="showcase" class="md:ml-20 pt-16 md:pt-20 min-h-screen px-4 md:px-container-padding flex items-center justify-center">
-<div class="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-card-gap min-h-0 lg:min-h-[700px] py-8 md:py-12">
+<main id="showcase" class="pt-[4.25rem] sm:pt-20 min-h-screen px-3 sm:px-4 md:px-container-padding flex items-center justify-center">
+<div class="w-full max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6 md:gap-card-gap min-h-0 lg:min-h-[700px] py-6 sm:py-8 md:py-12">
 
 <div class="relative rounded-xl overflow-hidden group" id="rides">
 <div class="flex flex-col h-full gap-4">
@@ -191,10 +197,10 @@
 <div class="absolute bottom-6 md:bottom-8 left-6 md:left-8 z-20 flex flex-col gap-2">
 <div class="flex items-center gap-3">
 <div class="w-2 h-2 rounded-full bg-primary-fixed animate-pulse"></div>
-<span class="font-label-caps text-label-caps text-primary-fixed">TRICHY → BENGALURU · DUKE 200</span>
+<span class="font-label-caps text-[10px] sm:text-label-caps text-primary-fixed">TRICHY → BENGALURU · DUKE 200</span>
 </div>
-<h2 class="font-display-lg text-3xl md:text-display-lg text-white">THE RIDE.</h2>
-<p class="font-body-md text-on-surface-variant text-sm md:text-base">310 km · 5 hr 34 min · avg 80 km/h</p>
+<h2 class="font-display-lg text-2xl sm:text-3xl md:text-display-lg text-white">THE RIDE.</h2>
+<p class="font-body-md text-on-surface-variant text-xs sm:text-sm md:text-base">310 km · 5 hr 34 min · avg 80 km/h</p>
 </div>
 </div>
 <div class="grid grid-cols-2 gap-4 h-36 md:h-48" id="thumb-gallery">
@@ -209,7 +215,7 @@
 </div>
 
 <div class="flex flex-col gap-gutter">
-<div id="prompt-section" class="glass-panel prompt-panel p-6 md:p-12 rounded-xl flex flex-col gap-6 relative overflow-hidden h-full max-h-[70vh] lg:max-h-none">
+<div id="prompt-section" class="glass-panel prompt-panel p-4 sm:p-6 md:p-12 rounded-xl flex flex-col gap-4 sm:gap-6 relative overflow-hidden h-full max-h-[55vh] sm:max-h-[65vh] lg:max-h-none">
 <div class="absolute -top-24 -right-24 w-48 h-48 bg-primary-fixed/10 blur-[80px] rounded-full pointer-events-none"></div>
 <div class="flex items-start justify-between border-b border-white/10 pb-4 gap-4">
 <div>
@@ -234,7 +240,7 @@ Bike Name: [TYPE BIKE NAME]
 
 The route must form the main glowing road path beneath and ahead of the biker. The same route must also extend around the biker on the ground, subtly framing the rider composition. The route must feel physically embedded into the asphalt with realistic perspective distortion, edge glow, depth, and light spill. Never make the route holographic or floating. The route glow color must match the Wheelsafar yellow theme exactly, vibrant golden yellow with cinematic contrast. Do NOT change the original background, lighting, environment, or composition from the biker photo. Only embed the Wheelsafar stats and route naturally into the scene as instructed.</p>
 </div>
-<div id="socials" class="pt-6 border-t border-white/10 flex flex-col sm:flex-row gap-gutter items-center justify-between">
+<div id="socials" class="pt-4 sm:pt-6 border-t border-white/10 flex flex-col sm:flex-row gap-4 sm:gap-gutter items-stretch sm:items-center justify-between">
 <a class="flex items-center gap-3 text-primary-fixed hover:text-white transition-colors group" href="https://www.instagram.com/soul.vishnu_" target="_blank" rel="noopener noreferrer">
 <div class="p-2 rounded-full border border-primary-fixed group-hover:bg-primary-fixed group-hover:text-on-primary-fixed transition-all">
 <span class="material-symbols-outlined text-[20px]">photo_camera</span>
@@ -323,10 +329,30 @@ The route must form the main glowing road path beneath and ahead of the biker. T
         }
         animate();
 
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        menuToggle?.addEventListener('click', () => {
+            const open = mobileMenu?.classList.toggle('hidden') === false;
+            menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+            if (menuIcon) menuIcon.textContent = open ? 'close' : 'menu';
+        });
+
+        mobileMenu?.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuToggle?.setAttribute('aria-expanded', 'false');
+                if (menuIcon) menuIcon.textContent = 'menu';
+            });
+        });
+
         const heroImage = document.getElementById('hero-image');
         const gallery = document.getElementById('thumb-gallery');
+        const thumbs = document.querySelectorAll('.hero-thumb');
 
-        document.querySelectorAll('.hero-thumb').forEach(thumb => {
+        thumbs.forEach(thumb => {
             thumb.addEventListener('click', () => {
                 const thumbImg = thumb.querySelector('.thumb-img');
                 if (!thumbImg || !heroImage) return;

@@ -27,6 +27,28 @@
         .glow-hover:hover {
             box-shadow: 0 0 20px rgba(122, 156, 198, 0.35);
         }
+        .nav-link-active {
+            color: #9eb8d9;
+            background: rgba(122, 156, 198, 0.12);
+        }
+        #mobile-menu:not(.hidden) {
+            animation: slideDown 0.2s ease-out;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .about-hero-bg img {
+            opacity: 0.35;
+        }
+        .about-hero-overlay {
+            background: linear-gradient(
+                to bottom,
+                rgba(8, 9, 12, 0.55) 0%,
+                rgba(8, 9, 12, 0.72) 50%,
+                rgba(8, 9, 12, 0.85) 100%
+            );
+        }
     </style>
 <script id="tailwind-config">
         tailwind.config = {
@@ -70,58 +92,58 @@
 <body class="bg-surface text-on-surface font-body-md overflow-x-hidden selection:bg-primary-fixed selection:text-on-primary-fixed">
 <div class="liquid-bg"></div>
 
-<nav class="fixed top-0 w-full z-50 bg-surface/30 backdrop-blur-xl border-b border-white/10 shadow-[0_0_20px_rgba(122,156,198,0.08)] flex justify-between items-center px-4 md:px-container-padding h-16 md:h-20">
-<a href="index.html" class="font-display-lg text-xl md:text-2xl text-primary-fixed-dim tracking-tighter">Soul.Vishnu_</a>
-<div class="hidden md:flex items-center gap-gutter">
-<a class="text-on-surface-variant hover:text-on-surface transition-colors font-body-md text-body-md" href="index.html">Prompt</a>
-<a class="text-primary-fixed font-bold border-b-2 border-primary-fixed pb-1 font-body-md text-body-md" href="about.html">About</a>
-<a class="text-on-surface-variant hover:text-on-surface transition-colors font-body-md text-body-md" href="#socials">Socials</a>
-</div>
+<header class="site-header fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl border-b border-white/10 shadow-[0_0_20px_rgba(122,156,198,0.08)]">
+<div class="max-w-7xl mx-auto flex items-center justify-between gap-3 h-14 sm:h-16 px-4 sm:px-6 md:px-10">
+<a href="index.html" class="flex items-center gap-2 sm:gap-3 min-w-0 shrink">
+<img alt="Soul Vishnu" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover object-top border border-primary-fixed/40 shrink-0" src="assets/images/about-work.png"/>
+<span class="font-display-lg text-base sm:text-lg md:text-xl text-primary-fixed-dim tracking-tighter truncate">Soul.Vishnu_</span>
+</a>
+<nav class="hidden md:flex items-center gap-1" aria-label="Main navigation">
+<a class="nav-link-active flex items-center gap-2 px-3 py-2 rounded-lg font-label-caps text-label-caps transition-all" href="about.html">
+<span class="material-symbols-outlined text-[20px]">person</span>About Me</a>
+<a class="flex items-center gap-2 px-3 py-2 rounded-lg font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all" href="index.html">
+<span class="material-symbols-outlined text-[20px]">terminal</span>Prompt</a>
+<a class="flex items-center gap-2 px-3 py-2 rounded-lg font-label-caps text-label-caps text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all" href="#socials">
+<span class="material-symbols-outlined text-[20px]">alternate_email</span>Connect</a>
 </nav>
-
-<aside class="sidebar-nav hidden md:flex fixed left-0 top-0 h-full w-20 hover:w-64 transition-all duration-500 ease-in-out z-40 flex-col border-r border-white/5 bg-surface-container-low/30 backdrop-blur-2xl pt-24 pb-8 px-3 hover:px-5 group overflow-hidden">
-<a href="index.html" class="hidden group-hover:block font-display-lg text-xl text-primary-fixed-dim tracking-tighter mb-8 whitespace-nowrap">Soul.Vishnu_</a>
-<div class="flex flex-col items-center gap-3 mb-10 w-full">
-<div class="w-12 h-12 group-hover:w-24 group-hover:h-24 rounded-full overflow-hidden border border-primary-fixed/30 transition-all duration-500 shrink-0">
-<img alt="Soul Vishnu portrait" class="w-full h-full object-cover object-top" src="assets/images/about-work.png"/>
+<button type="button" id="menu-toggle" class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg border border-white/10 text-on-surface hover:bg-white/5 transition-all" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+<span class="material-symbols-outlined text-[24px]" id="menu-icon">menu</span>
+</button>
 </div>
-<p class="hidden group-hover:block font-display-lg text-headline-md text-primary-fixed-dim whitespace-nowrap">Soul Vishnu</p>
-</div>
-<nav class="flex flex-col gap-1 w-full">
-<a class="flex items-center justify-center group-hover:justify-start gap-0 group-hover:gap-4 py-3 px-2 group-hover:px-4 w-full text-primary-fixed border-l-2 border-primary-fixed bg-primary-fixed/5 transition-all rounded-r-lg" href="about.html">
-<span class="material-symbols-outlined text-[22px] shrink-0">person</span>
-<span class="hidden group-hover:inline font-label-caps text-label-caps whitespace-nowrap">About Me</span>
-</a>
-<a class="flex items-center justify-center group-hover:justify-start gap-0 group-hover:gap-4 py-3 px-2 group-hover:px-4 w-full text-on-surface-variant opacity-70 hover:bg-white/10 hover:opacity-100 transition-all rounded-r-lg" href="index.html">
-<span class="material-symbols-outlined text-[22px] shrink-0">terminal</span>
-<span class="hidden group-hover:inline font-label-caps text-label-caps whitespace-nowrap">Prompt</span>
-</a>
-<a class="flex items-center justify-center group-hover:justify-start gap-0 group-hover:gap-4 py-3 px-2 group-hover:px-4 w-full text-on-surface-variant opacity-70 hover:bg-white/10 hover:opacity-100 transition-all rounded-r-lg" href="#socials">
-<span class="material-symbols-outlined text-[22px] shrink-0">alternate_email</span>
-<span class="hidden group-hover:inline font-label-caps text-label-caps whitespace-nowrap">Connect</span>
-</a>
+<nav id="mobile-menu" class="hidden md:hidden border-t border-white/10 bg-surface/95 backdrop-blur-xl px-4 py-3 flex flex-col gap-1" aria-label="Mobile navigation">
+<a class="nav-link-active flex items-center gap-3 px-3 py-3 rounded-lg font-label-caps text-label-caps transition-all" href="about.html">
+<span class="material-symbols-outlined text-[22px]">person</span>About Me</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg font-label-caps text-label-caps text-on-surface-variant hover:bg-white/10 transition-all" href="index.html">
+<span class="material-symbols-outlined text-[22px]">terminal</span>Prompt</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg font-label-caps text-label-caps text-on-surface-variant hover:bg-white/10 transition-all" href="#socials">
+<span class="material-symbols-outlined text-[22px]">alternate_email</span>Connect</a>
 </nav>
-</aside>
-
-<main class="md:ml-20 pt-24 md:pt-28 pb-16 px-4 md:px-container-padding">
-<div class="max-w-4xl mx-auto flex flex-col gap-10 md:gap-14">
-
-<header class="text-center flex flex-col gap-4">
-<p class="font-label-caps text-label-caps text-primary-fixed tracking-widest">TRICHY → BENGALURU</p>
-<h1 class="font-display-lg text-4xl md:text-display-lg text-on-surface tracking-tight">About Me</h1>
-<p class="font-body-md text-on-surface-variant max-w-2xl mx-auto">Silent soul. Creative mind. Explorer at heart. Builder by passion.</p>
 </header>
 
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-<div class="rounded-xl overflow-hidden border border-white/10 aspect-[4/5] sm:aspect-[3/4]">
-<img alt="Vishnu working at his desk" class="w-full h-full object-cover object-center" src="assets/images/about-work.png"/>
+<main class="pt-[4.25rem] sm:pt-20 pb-12 sm:pb-16 w-full">
+<div class="w-full flex flex-col gap-8 sm:gap-10 md:gap-12">
+
+<div class="w-full px-3 sm:px-4 md:px-container-padding">
+<section class="about-hero relative w-full rounded-xl overflow-hidden border border-white/10 min-h-[320px] sm:min-h-[380px] md:min-h-[44vh] md:max-h-[520px] flex items-center justify-center">
+<div class="about-hero-bg absolute inset-0 grid grid-cols-1 md:grid-cols-2">
+<div class="relative min-h-[180px] md:min-h-0 h-full">
+<img alt="" class="absolute inset-0 w-full h-full object-cover object-center" src="assets/images/about-work.png" aria-hidden="true"/>
 </div>
-<div class="rounded-xl overflow-hidden border border-white/10 aspect-[4/5] sm:aspect-[3/4]">
-<img alt="Vishnu on a road trip" class="w-full h-full object-cover object-center" src="assets/images/about-travel.png"/>
+<div class="relative min-h-[180px] md:min-h-0 h-full">
+<img alt="" class="absolute inset-0 w-full h-full object-cover object-center" src="assets/images/about-travel.png" aria-hidden="true"/>
 </div>
+</div>
+<div class="about-hero-overlay absolute inset-0" aria-hidden="true"></div>
+<header class="relative z-10 flex flex-col items-center justify-center text-center gap-3 sm:gap-4 px-6 py-14 sm:py-16 md:py-20 max-w-4xl mx-auto">
+<p class="font-label-caps text-label-caps text-primary-fixed tracking-widest">TRICHY → BENGALURU</p>
+<h1 class="font-display-lg text-4xl md:text-display-lg text-white tracking-tight drop-shadow-sm">About Me</h1>
+<p class="font-body-md text-on-surface text-base sm:text-lg max-w-2xl">Silent soul. Creative mind. Explorer at heart. Builder by passion.</p>
+</header>
+</section>
 </div>
 
-<article class="glass-panel rounded-xl p-6 md:p-10 space-y-8 text-on-surface-variant font-body-md leading-relaxed">
+<div class="w-full px-3 sm:px-4 md:px-container-padding">
+<article class="w-full glass-panel rounded-xl p-4 sm:p-6 md:p-10 lg:px-14 lg:py-12 space-y-6 sm:space-y-8 md:space-y-10 text-on-surface-variant font-body-md leading-relaxed text-[15px] sm:text-base md:text-[17px] md:leading-[1.75]">
 <p class="text-on-surface text-lg">Hi, I'm <strong class="text-primary-fixed">Vishnu</strong> — a developer, creator, traveler, designer, and storyteller who believes that good things take time.</p>
 <p>Originally from Trichy and currently based in Bengaluru, I'm someone who enjoys building meaningful digital experiences while also exploring life beyond screens. My world is a mix of technology, creativity, road trips, mountains, sunsets, and quiet moments that turn into memories.</p>
 <p>I believe life is best experienced through both creation and exploration.</p>
@@ -205,8 +227,9 @@
 <p class="text-on-surface italic border-l-2 border-primary-fixed/40 pl-4">Silent soul. Creative mind. Explorer at heart. Builder by passion.</p>
 </section>
 </article>
+</div>
 
-<div id="socials" class="flex flex-col sm:flex-row items-center justify-center gap-gutter pt-4">
+<div id="socials" class="flex flex-col sm:flex-row items-center justify-center gap-gutter pt-4 px-3 sm:px-4 md:px-container-padding w-full">
 <a class="flex items-center gap-3 text-primary-fixed hover:text-white transition-colors group" href="https://www.instagram.com/soul.vishnu_" target="_blank" rel="noopener noreferrer">
 <div class="p-2 rounded-full border border-primary-fixed group-hover:bg-primary-fixed group-hover:text-on-primary-fixed transition-all">
 <span class="material-symbols-outlined text-[20px]">photo_camera</span>
@@ -226,6 +249,25 @@
 </footer>
 
 <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        menuToggle?.addEventListener('click', () => {
+            const open = mobileMenu?.classList.toggle('hidden') === false;
+            menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+            if (menuIcon) menuIcon.textContent = open ? 'close' : 'menu';
+        });
+
+        mobileMenu?.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuToggle?.setAttribute('aria-expanded', 'false');
+                if (menuIcon) menuIcon.textContent = 'menu';
+            });
+        });
+
         const bg = document.querySelector('.liquid-bg');
         let tick = 0;
         (function animate() {
